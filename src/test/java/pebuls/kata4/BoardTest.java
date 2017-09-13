@@ -4,8 +4,8 @@ package pebuls.kata4;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Set;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
@@ -14,9 +14,9 @@ public class BoardTest {
     public void aSingleCellShouldHaveZeroNeighbours() throws Exception  {
 
         Board board = new Board();
-        board.addCell(new Cell());
+        board.addCell(new Cell(0, 0));
 
-        List<Cell> neighbors = board.getNeighbors(new Cell());
+        List<Cell> neighbors = board.getNeighbors(new Cell(0, 0));
 
         assertEquals(0, neighbors.size());
     }
@@ -24,14 +24,17 @@ public class BoardTest {
     @Test
     public void twoCellsNextToEachOtherShouldBeNeighbors() throws Exception  {
 
+        Cell first = new Cell(0, 0);
+        Cell second = new Cell(0, 1);
+
         Board board = new Board();
-        board.addCell(new Cell(0,0));
-        board.addCell(new Cell(0,1));
+        board.addCell(first);
+        board.addCell(second);
 
-        List<Cell> neighbors = board.getNeighbors(new Cell(0,0));
-        List<Cell> neighbors = board.getNeighbors(new Cell(0,1));
+        List<Cell> neighborsOfFirstCell = board.getNeighbors(first);
+        List<Cell> neighborsOfSecondCell = board.getNeighbors(second);
 
-        ssertArrayEquals(new Cell[] { new Cell(0, 1) }, neighborsOfFirstCell.toArray());
-        ssertArrayEquals(new Cell[] { new Cell(0, 0) }, neighborsOfFirstCell.toArray());
+        assertArrayEquals(new Cell[] {second}, neighborsOfFirstCell.toArray());
+        assertArrayEquals(new Cell[] {first}, neighborsOfSecondCell.toArray());
     }
 }
