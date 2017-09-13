@@ -20,6 +20,7 @@ public class Board {
                 neighbors.add(c);
             }
         }
+
         return neighbors;
     }
 }
