@@ -15,8 +15,9 @@ public class Board {
 
         List<Cell> neighbors = new ArrayList<>();
 
-        for(Cell c : cells) {
-            if(!c.equals(cell)) {
+        for (int dy = -1; dy <= 1; dy++)    {
+            Cell c = new Cell(cell.x, cell.y + dy);
+            if(cells.contains(c) && !c.equals(cell))  {
                 neighbors.add(c);
             }
         }
